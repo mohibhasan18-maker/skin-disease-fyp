@@ -45,7 +45,7 @@ export default function Home() {
   };
 
   return (
-    <main className="min-h-screen bg-gradient-to-b from-slate-900 via-gray-900 to-slate-800 text-white p-6 flex flex-col items-center">
+    <main className="min-h-screen bg-linear-to-b from-slate-900 via-gray-900 to-slate-800 text-white p-6 flex flex-col items-center">
       {/* Header Section */}
       <header className="max-w-4xl w-full text-center mb-12">
         <h1 className="text-4xl font-extrabold mb-2">AI Skin Disease Detector</h1>
@@ -98,11 +98,10 @@ export default function Home() {
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            className="bg-gray-800 rounded-xl p-6 shadow-lg flex flex-col gap-6"
           >
             <div className="flex flex-col md:flex-row items-center gap-6">
               {preview && (
-                <div className="w-48 h-48 flex-shrink-0 rounded-xl overflow-hidden border-2 border-gray-700">
+                <div className="w-48 h-48 shrink-0 rounded-xl overflow-hidden border-2 border-gray-700">
                   <img
                     src={preview}
                     alt="Uploaded"
@@ -125,7 +124,6 @@ export default function Home() {
                     <motion.div
                       initial={{ width: 0 }}
                       animate={{ width: `${val * 100}%` }}
-                      className="h-5 bg-purple-500 rounded"
                       transition={{ duration: 0.8 }}
                     />
                   </div>
