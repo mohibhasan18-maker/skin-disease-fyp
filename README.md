@@ -1,37 +1,69 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Skin Disease FYP Frontend
+
+Next.js frontend for the skin disease detection and consultation platform.
 
 ## Getting Started
 
-First, run the development server:
+Install dependencies and run the development server:
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Backend API URL
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+All frontend API calls are centralized in `lib/api-client.ts`.
 
-## Learn More
+For local development, create a `.env.local` file:
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+NEXT_PUBLIC_API_BASE_URL=http://localhost:8000/api
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+When your backend is deployed, change that value to your live backend URL, for example:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+NEXT_PUBLIC_API_BASE_URL=https://your-backend-domain.com/api
+```
 
-## Deploy on Vercel
+On Vercel, add the same variable in:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Project Settings -> Environment Variables -> `NEXT_PUBLIC_API_BASE_URL`
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
-test
+Then redeploy the frontend.
+
+If the variable is missing, the app falls back to `http://localhost:8000/api`.
+
+## Upload To GitHub Manually
+
+If Git is not connected from your computer, upload manually:
+
+1. Create a new repository on GitHub.
+2. Upload the project files from this folder.
+3. Do not upload `node_modules`, `.next`, `.env.local`, or `.vercel`.
+4. Make sure `.env.example`, `package.json`, `package-lock.json`, `app`, `components`, `lib`, `public`, and config files are uploaded.
+5. Commit the uploaded files on GitHub.
+
+## Deploy On Vercel
+
+1. Go to Vercel and choose `Add New Project`.
+2. Import the GitHub repository.
+3. Keep the framework as `Next.js`.
+4. Use the default build settings:
+   - Build Command: `npm run build`
+   - Install Command: `npm install`
+   - Output Directory: leave empty
+5. Add `NEXT_PUBLIC_API_BASE_URL` in Environment Variables.
+6. Deploy.
+
+## Backend Connection Later
+
+After your backend is deployed:
+
+1. Copy the backend base API URL.
+2. Update `NEXT_PUBLIC_API_BASE_URL` in Vercel.
+3. Redeploy the frontend.
+4. If API route names change, update only the endpoint paths inside `lib/api-client.ts`.
